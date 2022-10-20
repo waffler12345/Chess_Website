@@ -1,5 +1,3 @@
-print("big up ya self bredda")
-
 #templates-bottom and top of each page
 top=open("templates/top.html").read()
 bottom=open("templates/bottom.html").read()
