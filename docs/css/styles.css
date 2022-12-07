@@ -3806,6 +3806,27 @@ textarea.form-control-lg {
 .dropstart .dropdown-toggle::before {
   vertical-align: 0;
 }
+/* testing active class */
+
+/* .nav-link: active AND .nav-item:active produce the same results */
+
+
+.nav-item:active {
+  /* background-color: red; */
+
+  background-color: red
+}
+
+
+
+
+.a:active {
+  background: red
+}
+
+
+
+
 
 .dropdown-divider {
   height: 0;

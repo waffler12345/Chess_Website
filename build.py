@@ -58,10 +58,12 @@ pages=[
 main()
 '''
 
+##################################  
 
+#  Phase 3
 
-#STEP 3
 '''
+
 def main():
 
 	for page in pages:
@@ -94,35 +96,74 @@ pages=[
 ]
 
 main()
+
 '''
 
 
-#STEP 4: Templating 
+#######################################
+
+
+
+
+
+
+
+
+# (Phase 4) Now, time to refactor the code so it is more neat, efficient, and reusable: 
+
+
+'''
+def main():
+
+	template_opened=template()
+
+	for page in pages:
+		filename= page['filename']
+		filename=open(filename).read()
+		filename= template_opened.replace("{{Content}}", filename)
+		output= page['output']
+		open(output, "w+").write(filename)
+
+
+#templates-bottom and top of each page
+def template():
+	template_opened=open("templates/base.html").read()
+	return template_opened
+
+'''
+
 
 def main():
 
-	open(output, "w+").write(filename)
+	template_opened=template()
+	page_dict=pages()
 
-
-def template(base):
-	template=open(base).read()
-	each_page=pages()
-	
-	for page in each_page:
+	for page in page_dict:
 		filename= page['filename']
 		filename=open(filename).read()
-		filename= template.replace("{{Content}}", filename)
+		title_name=page['title']
+		filename= template_opened.replace("{{title}}", title_name).replace("{{Content}}", filename)
 		output= page['output']
-		return output	
+		open(output, "w+").write(filename)
+	
+	for page in page_dict:
+		filename= page['title']
 
 
 
-def pages():
+
+#templates-bottom and top of each page
+def template():
+	template_opened=open("templates/base.html").read()
+	return template_opened
+
+def pages ():
+
 	pages=[
 		{
 			"filename": "content/index.html",
 			"output": "docs/index.html",
-			"title": "Chess Events and Instruction in Pittsburgh",
+			"title": "Home",
 		},
 		{
 			"filename": "content/events.html",
@@ -135,17 +176,11 @@ def pages():
 			"title": "About Me",
 		},
 	]
+
 	return pages
 
-template("templates/base.html")
+
 main()
-
-
-
-
-
-
-
 
 
 
